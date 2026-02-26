@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Melis Nur 💍</title>
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    font-family:'Segoe UI',sans-serif;
+    text-align:center;
+    background:black;
+    transition:1s;
+}
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:
+        radial-gradient(2px 2px at 20px 30px, white, transparent),
+        radial-gradient(2px 2px at 200px 150px, white, transparent),
+        radial-gradient(2px 2px at 400px 300px, white, transparent),
+        radial-gradient(2px 2px at 600px 100px, white, transparent),
+        radial-gradient(2px 2px at 800px 250px, white, transparent),
+        radial-gradient(2px 2px at 1000px 400px, white, transparent),
+        radial-gradient(2px 2px at 1200px 200px, white, transparent);
+    animation:twinkle 3s infinite alternate;
+    z-index:-1;
+}
+@keyframes twinkle{from{opacity:0.4;} to{opacity:1;}}
+.container{padding:40px 20px;}
+h1{font-size:36px; color:#ff4b6e; animation:glow 2s infinite alternate;}
+@keyframes glow{from{text-shadow:0 0 10px #ff4b6e;} to{text-shadow:0 0 30px #ff1493,0 0 50px #ff1493;}}
+img{width:250px; border-radius:20px; margin:20px 0; box-shadow:0 0 30px #ff4b6e;}
+button{padding:12px 28px; font-size:16px; border:none; border-radius:30px; margin:10px; cursor:pointer;}
+#evet{background:#ff4b6e; color:white;}
+#hayir{background:white; color:#ff4b6e; position:absolute;}
+#sayac{margin-top:15px; color:#ff4b6e; font-weight:bold;}
+.ring{font-size:150px; animation:pop 1s ease forwards;}
+@keyframes pop{0%{transform:scale(0);} 100%{transform:scale(1);}}
+.bigText{font-size:38px; animation:fadeIn 2s forwards;}
+@keyframes fadeIn{from{opacity:0;} to{opacity:1;}}
+.heart{position:fixed; top:-10px; font-size:24px; animation:fall linear forwards;}
+@keyframes fall{to{transform:translateY(100vh);}}
+.shake{animation:shake 0.5s;}
+@keyframes shake{0%{transform:translate(0);}25%{transform:translate(5px);}50%{transform:translate(-5px);}75%{transform:translate(5px);}100%{transform:translate(0);}}
+.firework{
+    position:fixed;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:yellow;
+    pointer-events:none;
+    z-index:999;
+}
+</style>
+</head>
+<body>
+<div class="container" id="main">
+<h1>Melis Nur 💖</h1>
+<img src="./biz.jpg" alt="Bizim Foto"/>
+<p>23 Aralık 2025'ten beri kalbim sadece senin için atıyor ❤️</p>
+<div id="sayac"></div>
+<h2>Benimle Evlenir misin? 💍</h2>
+<button id="evet" onclick="kabul()">Evet 💖</button>
+<button id="hayir" onmouseover="kac()">Hayır 😢</button>
+</div>
+
+<audio id="muzik">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const baslangic = new Date("2025-12-23");
+function guncelle(){
+  const simdi=new Date();
+  const fark=simdi-baslangic;
+  const gun=Math.floor(fark/(1000*60*60*24));
+  document.getElementById("sayac").innerHTML = gun>=0 ? "Seni "+gun+" gündür sonsuz seviyorum ❤️" : "23 Aralık 2025'i bekliyorum... ❤️";
+}
+setInterval(guncelle,1000);
+guncelle();
+
+function kac(){
+  const btn=document.getElementById("hayir");
+  btn.style.top=Math.random()*80+"vh";
+  btn.style.left=Math.random()*80+"vw";
+}
+
+function kabul(){
+  document.body.classList.add("shake");
+  document.body.style.background="linear-gradient(45deg,#ff4b6e,#ff1493,#ff6a88)";
+  document.getElementById("muzik").play();
+  document.getElementById("main").innerHTML=
+    "<div class='ring'>💍</div>\
+     <div class='bigText'>EVET DEDİN! 💖</div>\
+     <p class='bigText'>Melis Nur... Sonsuza kadar seninim ❤️</p>";
+  havaiFisek();
+}
+
+function havaiFisek(){
+  for(let i=0;i<150;i++){
+    let kalp=document.createElement("div");
+    kalp.classList.add("heart");
+    kalp.innerHTML="💖";
+    kalp.style.left=Math.random()*100+"vw";
+    kalp.style.animationDuration=(Math.random()*3+2)+"s";
+    document.body.appendChild(kalp);
+    setTimeout(()=>{kalp.remove();},5000);
+  }
+
+  for(let i=0;i<50;i++){
+    let fw=document.createElement("div");
+    fw.classList.add("firework");
+    fw.style.left=Math.random()*100+"vw";
+    fw.style.top=Math.random()*50+"vh";
+    fw.style.background=["red","yellow","orange","pink","white"][Math.floor(Math.random()*5)];
+    document.body.appendChild(fw);
+    setTimeout(()=>{fw.remove();},800);
+  }
+}
+</script>
+</body>
+</html>
